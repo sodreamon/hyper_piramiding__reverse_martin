@@ -20,7 +20,7 @@ for _importing in [0]:
 
 for _base in [0] :
     # 차트생성시 틱 수
-    chart_data_len = 100000
+    chart_data_len = 10000000
     # 자본금
     bal = 10000000000
     # 회당 손절 사이즈
