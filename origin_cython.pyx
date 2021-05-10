@@ -53,7 +53,7 @@ db.create_all()
 # for _def_box in [0]:
 
 #차트데이터 생성
-cpdef making_new_chart_data(int chart_data_len):
+def making_new_chart_data(int chart_data_len):
 
     data_sr = pd.Series({0:0})
     cdef int first_data_price = 0
@@ -80,7 +80,7 @@ cpdef making_new_chart_data(int chart_data_len):
     return data_sr
 
 # 트레이딩
-cpdef trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
+def trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
     
     trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
     cdef double trading_bal = bal * 1
