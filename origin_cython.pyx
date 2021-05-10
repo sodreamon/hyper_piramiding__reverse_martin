@@ -80,7 +80,7 @@ def making_new_chart_data(int chart_data_len):
     return data_sr
 
 # 트레이딩
-def trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
+def trading(chart_data_sr, double bal, double sl_size, double bet_size) :
     
     trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
     cdef double trading_bal = bal * 1
