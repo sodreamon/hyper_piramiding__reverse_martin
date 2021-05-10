@@ -53,9 +53,9 @@ db.create_all()
 # for _def_box in [0]:
 
 #차트데이터 생성
-cdef int making_new_chart_data(int chart_data_len):
+cpdef making_new_chart_data(int chart_data_len):
 
-    cdef int data_sr = pd.Series({0:0})
+    cpdef data_sr = pd.Series({0:0})
     cdef int first_data_price = 0
 
     cdef int r1 =0
@@ -80,27 +80,27 @@ cdef int making_new_chart_data(int chart_data_len):
     return data_sr
 
 # 트레이딩
-cdef double trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
+cpdef trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
     
-    cdef double trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
+    cpdef trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
     cdef double trading_bal = bal * 1
     position_list = []
     position_close_list = []
     cdef double lowest_price = float("inf")
 
-    cdef double monitoring_df = pd.DataFrame() # 해당 전략이 정상적으로 작동하는지 확인하는 데이터프레임
+    cpdef monitoring_df = pd.DataFrame() # 해당 전략이 정상적으로 작동하는지 확인하는 데이터프레임
 
-    cdef double _index_num = 0
-    cdef double pre_price = 0
-    cdef double _price = 0
+    cdef int _index_num = 0
+    cdef int pre_price = 0
+    cdef int _price = 0
     cdef double close_size = 0
-    cdef double closed_price = 0
-    cdef double loss_tick = 0
+    cdef int closed_price = 0
+    cdef int loss_tick = 0
     cdef double profit = 0
     cdef double position_size = 0
-    cdef double position_price = 0
+    cdef int position_price = 0
     cdef double _position_profit = 0
-    cdef double last_position_price = 0
+    cdef int last_position_price = 0
     cdef double position_size_1 = 0
     for _index_num in range(1,len(chart_data_sr)) :
 
