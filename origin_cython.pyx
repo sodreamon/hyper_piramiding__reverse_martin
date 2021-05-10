@@ -37,13 +37,13 @@ start_t = time.time()
 
 # for _db in [0]:
 
-cpdef app = Flask(__name__)
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///result.db'
-cpdef db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
-cpdef class ResultData(db.Model):
-    cpdef id = db.Column(db.Integer, primary_key=True)
-    cpdef data = db.Column(db.PickleType, nullable=False)
+class ResultData(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    data = db.Column(db.PickleType, nullable=False)
 
 if os.path.isfile("result.db"):
     os.remove("result.db")
@@ -255,10 +255,10 @@ cpdef trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
 
 # for _main_process in [0] :
 
-cpdef chart_data_sr = making_new_chart_data(chart_data_len)
-cpdef trading_df = trading(chart_data_sr, bal, sl_size, bet_size)
+chart_data_sr = making_new_chart_data(chart_data_len)
+trading_df = trading(chart_data_sr, bal, sl_size, bet_size)
 
-cpdef new_result = ResultData(data=trading_df)
+new_result = ResultData(data=trading_df)
 db.session.add(new_result)
 db.session.commit()
 
