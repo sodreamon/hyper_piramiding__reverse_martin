@@ -55,7 +55,7 @@ db.create_all()
 #차트데이터 생성
 cpdef making_new_chart_data(int chart_data_len):
 
-    cpdef data_sr = pd.Series({0:0})
+    data_sr = pd.Series({0:0})
     cdef int first_data_price = 0
 
     cdef int r1 =0
@@ -82,13 +82,13 @@ cpdef making_new_chart_data(int chart_data_len):
 # 트레이딩
 cpdef trading(int chart_data_sr, double bal, double sl_size, double bet_size) :
     
-    cpdef trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
+    trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
     cdef double trading_bal = bal * 1
-    position_list = []
-    position_close_list = []
+    cpdef position_list = []
+    cpdef position_close_list = []
     cdef double lowest_price = float("inf")
 
-    cpdef monitoring_df = pd.DataFrame() # 해당 전략이 정상적으로 작동하는지 확인하는 데이터프레임
+    monitoring_df = pd.DataFrame() # 해당 전략이 정상적으로 작동하는지 확인하는 데이터프레임
 
     cdef int _index_num = 0
     cdef int pre_price = 0
