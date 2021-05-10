@@ -84,8 +84,8 @@ def trading(chart_data_sr, double bal, double sl_size, double bet_size) :
     
     trading_df = pd.DataFrame(columns=["PiramidingCount", "Profit", "Balance"])
     cdef double trading_bal = bal * 1
-    cpdef position_list = []
-    cpdef position_close_list = []
+    position_list = []
+    position_close_list = []
     cdef double lowest_price = float("inf")
 
     monitoring_df = pd.DataFrame() # 해당 전략이 정상적으로 작동하는지 확인하는 데이터프레임
