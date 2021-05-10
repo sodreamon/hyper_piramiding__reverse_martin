@@ -33,7 +33,7 @@ bet_size = 1/10000
 sl_size = 1/5
 
 # 타이머
-cdef double start_t = time.time()
+start_t = time.time()
 
 # for _db in [0]:
 
@@ -264,6 +264,6 @@ db.session.commit()
 
 print(trading_df)
 #타이머
-cdef double timer =time.time() - start_t
+timer =time.time() - start_t
 print(timer)
 trading_df["Balance"].iplot(kind="line")
