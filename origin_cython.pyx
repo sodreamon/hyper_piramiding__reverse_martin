@@ -264,5 +264,6 @@ db.session.commit()
 
 print(trading_df)
 #타이머
-print(double time.time() - start_t)
+cdef double timer =time.time() - start_t
+print(timer )
 trading_df["Balance"].iplot(kind="line")
