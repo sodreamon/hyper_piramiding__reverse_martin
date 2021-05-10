@@ -9,6 +9,7 @@ import random
 import pandas as pd
 import numpy as np
 import os
+import time
 # db
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -30,6 +31,9 @@ bal = 10000000
 bet_size = 1/10000
 # 회당 손절 사이즈
 sl_size = 1/5
+
+# 타이머
+cdef double start_t = time.time()
 
 # for _db in [0]:
 
@@ -225,7 +229,7 @@ cdef double trading(int chart_data_sr, double bal, double sl_size, double bet_si
         #     "Equity": (lambda x: format(sum([i[0]*(_price-i[1]) for i in x])+trading_bal,",") if len(x)>0 else np.nan)(position_list),
         #     # "PositionList":position_list
         #     },ignore_index=True)
-        print("\r",_index_num,end="")
+        print(_index_num)
         # print({
         #     "Price":_price,
         #     # "PiramidingCount":len(position_list)-1,
@@ -251,12 +255,14 @@ cdef double trading(int chart_data_sr, double bal, double sl_size, double bet_si
 
 # for _main_process in [0] :
 
-chart_data_sr = making_new_chart_data(chart_data_len)
-trading_df = trading(chart_data_sr, bal, sl_size, bet_size)
+cdef int chart_data_sr = making_new_chart_data(chart_data_len)
+cdef double trading_df = trading(chart_data_sr, bal, sl_size, bet_size)
 
 new_result = ResultData(data=trading_df)
 db.session.add(new_result)
 db.session.commit()
 
 print(trading_df)
+#타이머
+print(double time.time() - start_t)
 trading_df["Balance"].iplot(kind="line")
